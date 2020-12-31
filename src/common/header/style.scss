@@ -14,9 +14,9 @@
   .header-nav {
     width: 960px;
     height: 100%;
+    padding-right: 70px;
+    box-sizing: border-box;
     margin: 0 auto;
-    // background-color: orange;
-
     .header-nav-item {
       line-height: 56px;
       padding: 0 15px;
@@ -25,7 +25,6 @@
     }
     .left {
       float: left;
-      color: #969696;
     }
     .right {
       float: right;
@@ -34,21 +33,58 @@
     .active {
       color: #ea6f5a;
     }
-    .search {
-      width: 160px;
-      height: 38px;
-      margin-top: 9px;
-      margin-left: 20px;
-      padding: 0 20px;
-      font-size: 14px;
-      box-sizing: border-box;
-      border: none;
-      outline: none;
-      border-radius: 19px;
-      background: #eee;
-      &::placeholder {
-        color: #999;
+    .searchWrapper {
+      position: relative;
+      float: left;
+      .search {
+        width: 160px;
+        height: 38px;
+        margin-top: 9px;
+        margin-left: 20px;
+        padding: 0 20px;
+        font-size: 14px;
+        box-sizing: border-box;
+        border: none;
+        outline: none;
+        border-radius: 19px;
+        background: #eee;
+        &::placeholder {
+          color: #999;
+        }
       }
+      .iconfont {
+        position: absolute;
+        right: 5px;
+        bottom: 5px;
+        width: 30px;
+        line-height: 30px;
+        border-radius: 15px;
+        text-align: center;
+        background-color: red;
+      }
+    }
+  }
+  .header-addition {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 56px;
+    .header-addition-btn {
+      float: right;
+      margin-top: 9px;
+      margin-right: 20px;
+      padding: 0 20px;
+      line-height: 38px;
+      border-radius: 19px;
+      border: 1px solid #ec6149;
+      font-size: 14px;
+    }
+    .reg {
+      color: #ec6149;
+    }
+    .writing {
+      color: #fff;
+      background-color: #ec6149;
     }
   }
 }
