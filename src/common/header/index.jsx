@@ -40,7 +40,7 @@ const Header = (props) => {
               <input 
                 className={props.focused ? 'focused search' : 'search'} 
                 type="text" placeholder="search"
-                onFocus={props.handleInputFocus}
+                onFocus={() => {props.handleInputFocus(props.list)}}
                 onBlur={props.handleInputBlur}
               />
               <i className={props.focused ? 'focused iconfont' : 'iconfont'}>
@@ -78,8 +78,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleInputFocus() {
-      dispatch(actionCreators.getList())
+    handleInputFocus(list) {
+      (list.length === 0) && dispatch(actionCreators.getList())
       dispatch(actionCreators.searchFocus())
     },
     handleInputBlur() {
@@ -92,7 +92,6 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(actionCreators.mouseLeave())
     },
     handlePage(page, totalPage) {
-      console.log(page, totalPage)
       if ( page === totalPage ) {
         dispatch(actionCreators.changePage(1))
       } else {
