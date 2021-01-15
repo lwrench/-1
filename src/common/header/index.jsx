@@ -4,6 +4,30 @@ import * as actionCreators from './store/actionCreators'
 import './style.scss'
 
 const Header = (props) => {
+  const getArea = () => {
+    const { page, totalPage, list } = props
+    const currentList = []
+    for (let i = (page - 1) * 5; i < page * 5 && i < list.length - 1; i++ ) {
+      currentList.push(<div className="search-info-item" key={i}>{list[i]}</div>)
+    }
+    if (props.focused || props.mouseIn) {
+      return (
+        <div className="search-info" onMouseEnter={props.handleMouseEnter} onMouseLeave={props.handleMouseLeave}>
+          <div className="search-info-title">
+            热门搜索
+            <div className="search-info-switch" onClick={() => { props.handlePage(page, totalPage) }}>
+              换一批
+            </div>
+          </div>
+          <div className="search-info-list">
+            {
+              currentList
+            }
+          </div>
+        </div>
+      )
+    }
+  }
   return (
     <div className="header">
       <a href="/" className="logo"> </a>
@@ -22,6 +46,7 @@ const Header = (props) => {
               <i className={props.focused ? 'focused iconfont' : 'iconfont'}>
                 &#xe614;
               </i>
+              {getArea()}
           </div>
         </CSSTransition> 
         </div>
@@ -43,17 +68,36 @@ const Header = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    focused: state.header.focused
+    focused: state.header.focused,
+    mouseIn: state.header.mouseIn,
+    list: state.header.list,
+    page: state.header.page,
+    totalPage: state.header.totalPage
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleInputFocus(){
+    handleInputFocus() {
+      dispatch(actionCreators.getList())
       dispatch(actionCreators.searchFocus())
     },
-    handleInputBlur(){
+    handleInputBlur() {
       dispatch(actionCreators.searchBlur())
+    },
+    handleMouseEnter() {
+      dispatch(actionCreators.mouseEnter())
+    },
+    handleMouseLeave() {
+      dispatch(actionCreators.mouseLeave())
+    },
+    handlePage(page, totalPage) {
+      console.log(page, totalPage)
+      if ( page === totalPage ) {
+        dispatch(actionCreators.changePage(1))
+      } else {
+        dispatch(actionCreators.changePage(page + 1))
+      }
     }
   }
 }
