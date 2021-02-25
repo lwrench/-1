@@ -1,3 +1,3 @@
-import headerReducer from './reducer'
+import headerReducer from './reducer';
 
-export default headerReducer 
+export default headerReducer;

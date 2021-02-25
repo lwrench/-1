@@ -1,0 +1,26 @@
+.list-item {
+  padding: 20px 0;
+  border-bottom: 1px solid #dcdcdc;
+  overflow: hidden;
+  img {
+    display: block;
+    width: 125px;
+    height: 100px;
+    float: right;
+  }
+  .list-info {
+    width: 500px;
+    float: left;
+    h3 {
+      line-height: 27px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+    }
+    p {
+      line-height: 18px;
+      font-size: 13px;
+      color: #999;
+    }
+  }
+}
